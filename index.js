@@ -13,7 +13,7 @@ inquirer
     {
       type: "rawlist",
       name: "options",
-      message: "Hi and welcome to Team profile generator. please select a option below 😀.", 
+      message: "Hi and Welcome to Team profile generator. please select a option below 😀.", 
       choices: ["Add Manager", "Add Engineer", "Add Intern"],
 
     },

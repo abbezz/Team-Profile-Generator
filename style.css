@@ -1,0 +1,14 @@
+h1 {
+    display: flex;
+    justify-content: center;
+    background-color: peru
+  }
+  
+  .card-body{
+    background-color: orange;
+    padding: 1rem;
+  }
+  
+  .card-header {
+    background-color: peru;
+  }
