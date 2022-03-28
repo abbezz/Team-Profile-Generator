@@ -62,6 +62,6 @@ Css
 
 
 
-![abbe about me](https://user-images.githubusercontent.com/94430401/153731226-2647f6fd-fb8c-438c-8c23-338d24a14550.png)
+
 
 
