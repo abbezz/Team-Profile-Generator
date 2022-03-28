@@ -3,6 +3,11 @@
 
 
 # Getting Started
+This project is to create a team profile builder using HTML, CSS, Bootstrap, JS, Nodejs.
+
+User Story AS A manager I WANT to generate a webpage that displays my team's basic info SO THAT I have quick access to their emails and GitHub profiles
+
+Description This project is meant to help create a professional looking team page to introduce the different members of your team.
 
 
 
@@ -10,7 +15,15 @@
 
 
 #Screenshots
-(https://user-images.githubusercontent.com/94430401/160307857-efe199c3-410e-4e63-a4c3-26e6714f5477.png)
+![Untitled](https://user-images.githubusercontent.com/94430401/160308050-426d260f-f872-4586-9239-60c2f5dae6d0.png)
+
+
+Installation
+Install my-project with npm
+
+    npm install
+    npm inquirer 
+    npm init -y
 
 
 
@@ -21,6 +34,9 @@ Link:
 
 ## 🛠 Skills
 Node js
+javascript
+Html
+Css
 
 
 
