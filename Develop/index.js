@@ -44,7 +44,7 @@ inquirer
 
     {
       type: "input",
-      name: "Email",
+      name: "email",
       message: "Please enter your Manager email 📪",
       validate: (answer) => {
         if(answer --- ""){
