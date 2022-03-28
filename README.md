@@ -10,10 +10,12 @@
 
 
 #Screenshots
+[Untitled](https://user-images.githubusercontent.com/94430401/160307857-efe199c3-410e-4e63-a4c3-26e6714f5477.png)
 
-![portfolio]("C:\Users\abbez\Downloads\Untitled.png")
 
-# Deployment
+
+# Deployment!
+
 Link: 
 
 
