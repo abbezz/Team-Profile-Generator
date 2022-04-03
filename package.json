@@ -1,9 +1,10 @@
 {
-  "name": "team-profile-generator",
+  "name": "Team-Profile-Generator",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.",
+  "main": "Develop/index.js",
   "scripts": {
+    "start": "node Develop/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +19,10 @@
   },
   "homepage": "https://github.com/abbezz/Team-Profile-Generator#readme",
   "dependencies": {
-    "inquirer": "^8.2.2"
+    "inquirer": "^8.2.2",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }

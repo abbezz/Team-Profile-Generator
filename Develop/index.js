@@ -1,6 +1,6 @@
-const Manager = require("Manager");
-const Engineer = require("Engineer");
-const Intern = require("Intern");
+const Manager = require("./Library/Manager");
+const Engineer = require("./Library/Engineer");
+const Intern = require("./Library/Intern");
 const fs = require("fs");
 const inquirer = require('inquirer');
 inquirer
@@ -181,3 +181,9 @@ inquirer
       // Something else went wrong
     }
   });
+  
+
+
+
+
+ 
