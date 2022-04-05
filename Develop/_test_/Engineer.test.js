@@ -5,7 +5,7 @@ test('test if we can get the constructor values for the engineer object', () =>{
      expect(testEngineer.name).toBe('abbezz');
      expect(testEngineer.id).toBe('7777');
      expect(testEngineer.email).toBe('abbezz@live.com');
-     expect(testEngineer.githubUsername).toBe('abbezz');
+    
 
 });
 
