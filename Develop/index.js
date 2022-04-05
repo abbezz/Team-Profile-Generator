@@ -1,7 +1,9 @@
 const Manager = require("./Library/Manager");
 const Engineer = require("./Library/Engineer");
-const Intern = require("./Library/Intern");
+const Intern = require("./Library/Intern");;
 const fs = require("fs");
+const OUTPUT_DIR = path.resolve(__dirname, "output")
+ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const inquirer = require('inquirer');
 inquirer
 
@@ -170,19 +172,25 @@ inquirer
 
 
   ])
-  .then((answers) => {
-    // Use user feedback for... whatever!!
+  .then(answers => {
     console.log(answers);
-  })
-  .catch((error) => {
-    if (error.isTtyError) {
-      // Prompt couldn't be rendered in the current environment
-    } else {
-      // Something else went wrong
-    }
-  });
-  
+    const intern = new Intern(answers.name, answers.employeeId,answers.school);
+    teamMembers.push(intern);
+    promptMenu();
+})
 
+
+
+// Create the output directory if the output path doesn't exist 
+if(!fs.existsSync(OUTPUT_DIR)){
+   fs.mkdirSync(OUTPUT_DIR)
+}
+fs.writeFileSync(outputPath, generateSite(teamMembers),"utf-8");
+
+promptManager();
+
+ 
+  
 
 
 
