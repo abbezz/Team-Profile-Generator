@@ -1,197 +1,193 @@
+//Generate html is required to create the markdown
+const renderHTML = require("./Library/generate-site");
+
+//The manager class is imported
 const Manager = require("./Library/Manager");
+
+//The engineer class is imported
 const Engineer = require("./Library/Engineer");
-const Intern = require("./Library/Intern");;
+
+//The intern class is imported
+const Intern = require("./Library/Intern");
+
+const inquirer = require("inquirer");
+
+//Fs is required to write the team profile file
 const fs = require("fs");
-const OUTPUT_DIR = path.resolve(__dirname, "output")
- const outputPath = path.join(OUTPUT_DIR, "team.html");
-const inquirer = require('inquirer');
-inquirer
 
+//teamMemberArray is declared as an empty array
+const teamMembersArray = [];
 
-// start to write prompts for Manager questions
+/* Prompts for manager */
 
-   .prompt([   
-    /* Pass your questions in here */
-    {
-      type: "rawlist",
-      name: "options",
-      message: "Hi and Welcome to Team profile generator. please select a option below 😀.", 
-      choices: ["Add Manager", "Add Engineer", "Add Intern"],
+function managerPrompts() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "name",
+        message: " Please enter the manager's name.",
+      },
+      {
+        type: "input",
+        name: "id",
+        message: "Please enter manager's ID.",
+      },
+      {
+        type: "input",
+        name: "email",
+        message: "Please enter manager's email.",
+      },
+      {
+        type: "input",
+        name: "officeNumber",
+        message: "Please enter manager's office number.",
+      },
+    ])
+    .then((answers) => {
+      const manager = new Manager(
+        answers.name,
+        answers.id,
+        answers.email,
+        answers.officeNumber,
+      );
+      teamMembersArray.push(manager);
+      renderTeam();
+    });
+};
 
-    },
-
-    {
-      type: "input",
-      name: "name",
-      message: "What is your Manager name?",
-      validate: (answer) => {
-        if(answer --- ""){
-          return "Please enter a valid name 😡"
-        }
-        return true
+function renderTeam() {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "roles",
+        message: "Please choose your employee's role.",
+        choices: ["Engineer", "Intern", "None"],
+      },
+    ])
+    .then((answers) => {
+      if (answers.roles === "Engineer") {
+        engineerPrompts();
+      } else if (answers.roles === "Intern") {
+        internPrompts();
+      } else {
+        writeFile();
       }
-    },
+    });
+};
 
-    {
-       type: "input",
-       name: "id",
-       message: "Please enter your Manager ID",
-       validate: (answer) => {
-        if(isNaN(answer)){
-          return "Please enter a valid ID number"
+/* Prompts for engineer */
+
+function engineerPrompts() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "name",
+        message: " Please enter the engineer's name.",
+      },
+      {
+        type: "input",
+        name: "id",
+        message: "Please enter engineer's ID.",
+        validate: (answer) => {
+          if(isNaN(answer)){
+            return "Please enter a valid ID number"
+          }
+          return true
         }
-        return true
-      }
-    },
-
-    {
-      type: "input",
-      name: "email",
-      message: "Please enter your Manager email 📪",
-      validate: (answer) => {
-        if(answer --- ""){
-          return "Please enter a valid name"
-        }
-        return true
-      }
-    },
-
-    {
-      type: "input",
-      name: "Number",
-      message: " Please Enter your Managers number",
-      validate: (answer) => {
-        if(isNaN(answer)){
-          return "Please enter a valid number"
-        }
-        return true
-      }
-
-
-    },
-    
-    // start to write prompts for Engineer questions
-
-     {
-      type: "input",
-      name: "name",
-      message: "What is your Engineer name?",
-      validate: (answer) => {
-        if(answer --- ""){
-          return "Please enter a valid name 😡"
-        }
-        return true
-      }
-    },
-
-    {
-       type: "input",
-       name: "id",
-       message: "Please enter your Engineer ID",
-       validate: (answer) => {
-        if(isNaN(answer)){
-          return "Please enter a valid ID number"
-        }
-        return true
-      }
-    },
-
-    {
-      type: "input",
-      name: "Email",
-      message: "Please enter your email 📪",
-      validate: (answer) => {
-        if(answer --- ""){
-          return "Please enter a valid name"
-        }
-        return true
-      }
-    },
-
-    {
-      type: "input",
-      name: "gitName",
-      message: " Please enter your GitHub userName",
-      validate: (answer) => {
-        if(answer --- ""){
-          return "Please enter a valid GitHub userName"
-        }
-        return true
-      }
-
-
-    },
-
-    // start to write prompts for Intern questions
-
-    {
-      type: "input",
-      name: "name",
-      message: " Please enter the intern's name.",
-      validate: (answer) => {
-        if(answer --- ""){
-          return "Please enter a valid name 😡"
-        }
-        return true
-      }
-    },
-    {
-      type: "input",
-      name: "id",
-      message: "Please enter intern's ID.",
-      validate: (answer) => {
-        if(isNaN(answer)){
-          return "Please enter a valid ID number"
-        }
-        return true
-      }
-    },
-    {
-      type: "input",
-      name: "email",
-      message: "Please enter intern's email.",
-      validate: (answer) => {
-        if(answer --- ""){
-          return "Please enter a valid email 😡"
-        }
-        return true
-      }
-    },
-    {
-      type: "input",
-      name: "school",
-      message: "Please enter intern's school.",
-      validate: (answer) => {
-        if(answer --- ""){
-          return "Please enter a valid school name 😡"
-        }
-        return true
-      }
-    },
-
-
-
-  ])
-  .then(answers => {
-    console.log(answers);
-    const intern = new Intern(answers.name, answers.employeeId,answers.school);
-    teamMembers.push(intern);
-    promptMenu();
-})
-
-
-
-// Create the output directory if the output path doesn't exist 
-if(!fs.existsSync(OUTPUT_DIR)){
-   fs.mkdirSync(OUTPUT_DIR)
+      },
+      {
+        type: "input",
+        name: "email",
+        message: "Please enter engineers's email.",
+      },
+      {
+        type: "input",
+        name: "gitUsername",
+        message: "Please enter engineer's GitHub Username.",
+      },
+    ])
+    .then((answers) => {
+      const engineer = new Engineer(
+        answers.name,
+        answers.id,
+        answers.email,
+        answers.gitUsername,
+      );
+      teamMembersArray.push(engineer);
+      renderTeam();
+    });
 }
-fs.writeFileSync(outputPath, generateSite(teamMembers),"utf-8");
 
-promptManager();
+/* Prompts for intern */
 
- 
-  
+function internPrompts() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "name",
+        message: " Please enter the intern's name.",
+        validate: (answer) => {
+          if(answer --- ""){
+            return "Please enter a valid name 😡"
+          }
+          return true
+        }
+      },
+      {
+        type: "input",
+        name: "id",
+        message: "Please enter intern's ID.",
+        validate: (answer) => {
+          if(isNaN(answer)){
+            return "Please enter a valid ID number"
+          }
+          return true
+        }
+      },
+      {
+        type: "input",
+        name: "email",
+        message: "Please enter intern's email.",
+         },
+        {
+           type: "input",
+            name: "school",
+            message: "Please enter intern's school.",
+            validate: (answer) => {
+            if(answer --- ""){
+             return "Please enter a valid school name 😡"
+           }
+           return true
+         }
+       },
+     ])
+     .then((answers) => {
+       const intern = new Intern(
+        answers.name,
+        answers.id,
+        answers.email,
+        answers.school,
+        );
+        teamMembersArray.push(intern);
+        renderTeam();
+       });
+       }
 
+         const writeFile = () => {
+          fs.writeFileSync("./Develop/index.html", renderHTML(teamMembersArray), (err) => {
+         //Any errors with writing to the file are captured
+         if (err) {
+         console.log(err);
+         return;
+           //if writing to the file was successful, then the HTML file created a message is logged in the console
+             } else {
+           console.log("Good your team profile has been created!");
+          }
+        });
+      };
 
-
- 
+       managerPrompts();

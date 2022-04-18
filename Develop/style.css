@@ -10,14 +10,17 @@ header{
   font-size: 2rem;
   margin: 15px;
   padding: 10px;
+  
+
 }
 
 main {
-  
+  background-color: black;
   display: flex ;
   flex-wrap: wrap;
   margin: 15px;
   padding: 10px;
+  
 }
 
 .card{

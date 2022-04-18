@@ -13,5 +13,7 @@ class Engineer extends Employee {
     return "Engineer";
   }
 }
-
+function helper() {
+  console.log("Helper");
+}
 module.exports = Engineer;
