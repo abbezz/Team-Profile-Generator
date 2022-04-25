@@ -26,11 +26,11 @@ main {
 .card{
   padding: 10px;
   margin: 15px;
- background-color: blueviolet;
+ background-color: silver
 }
 .card-header{
   color: silver;
-  background-color: black
+ 
 }
 
 .list-group{
